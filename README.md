@@ -12,8 +12,8 @@
 - [ ] Implementação da função que trata a interrupção de Reset;
 - [ ] Implementação das funções que tratam as outras interrupções; Ou uma função default.
 
-> Autor: Gustavo Alves de Oliveira
-Matrícula: 12311ECP026
+> Autor: Gustavo Alves de Oliveira\
+Matrícula: 12311ECP026\
 Universidade Federal de Uberlândia
 
 
