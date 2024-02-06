@@ -13,11 +13,11 @@ DEPFLAGS = -MMD -MP -MF $(DEPDIR)/$*.d
 SRCS = startup.c main.c
 
 
-OBJS = $(patsubst %, $(OBJDIR)/%.o, $(basename $(SRCS)) )
+OBJS = $(patsubst %, $(OBJDIR)/%.o, $(basename $(SRCS)))
 $(shell mkdir -p $(dir $(OBJS)) > /dev/null)
 
-DEPS = $(patsubst %, $(OBJDIR)/%.d, $(basename $(SRCS)))
-$(shell mkdir -p (dir $(DEPDIR)) > /dev/null)
+DEPS = $(patsubst %, $(DEPDIR)/%.d, $(basename $(SRCS)))
+$(shell mkdir -p $(dir $(DEPS)) > /dev/null)
 
 
 # Avisa ao make que esse target (all) não gera arquivos
