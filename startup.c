@@ -25,6 +25,7 @@ extern uint32_t _start_bss;             /* Inicio da secao .bss */
 extern uint32_t _end_bss;               /* Fim da secao .bss */
 extern uint32_t _address_data;          /* Endereco de carga na FLASH da secao .data */
 
+int main(void);
 
 /*
     +--------------------------------------------------------+
