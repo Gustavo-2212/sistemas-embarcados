@@ -19,10 +19,10 @@
     |.data (SRAM e FLASH) e .bss (SRAM).                            |
     +---------------------------------------------------------------+
 */
-extern uint32_t _start_data;            /* Inicio da secao .data */
-extern uint32_t _end_data;              /* Fim da secao .data */
-extern uint32_t _start_bss;             /* Inicio da secao .bss */
-extern uint32_t _end_bss;               /* Fim da secao .bss */
+extern uint32_t _start_data;            /* Inicio da secao .data na SRAM */
+extern uint32_t _end_data;              /* Fim da secao .data na SRAM */
+extern uint32_t _start_bss;             /* Inicio da secao .bss na SRAM */
+extern uint32_t _end_bss;               /* Fim da secao .bss na SRAM */
 extern uint32_t _address_data;          /* Endereco de carga na FLASH da secao .data */
 
 int main(void);
@@ -222,6 +222,9 @@ void reset_handler(void) {
 
     /* Copia a seção .data da FLASH para a SRAM */
     uint32_t size    = (uint32_t) &_end_data - (uint32_t) &_start_data;
+
+    // Note que estamos usando uint8_t para iterarmos, ou seja, copiaremos Byte a Byte
+    // da FLASH para SRAM
     uint8_t *destiny = (uint8_t*) &_start_data;
     uint8_t *source  = (uint8_t*) &_address_data;
 
