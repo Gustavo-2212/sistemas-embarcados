@@ -618,8 +618,6 @@ SECTIONS
 }
 ```
 
-![VSCODE](./images/lab-03-ldscript.jpg "VSCODE")
-
 ### 3 - Modificar o **Makefile**
 
 Para realizar a linkedição do nosso iremos utilizar o compilador, que se
