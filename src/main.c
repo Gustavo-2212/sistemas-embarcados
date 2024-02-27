@@ -2,6 +2,7 @@
 
 #include "config.h"
 
+char version[] = {'V', '1', '.', '0'};
 
 int main(int argc, char **argv) {
 

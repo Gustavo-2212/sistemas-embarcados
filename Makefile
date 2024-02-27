@@ -33,10 +33,7 @@ $(PROGNAME).bin: $(PROGNAME).elf
 $(PROGNAME).elf: $(OBJS)
 	$(LD) $(LFLAGS) -o $@ $^
 
-$(PROGNAME).elf: $(OBJS)
-	$(LD) $(LFLAGS) -o $@ $^
-
-$(OBJDIR)/%.o: %.c $(DEPDIR)/%.d
+$(OBJDIR)/%.o: src/%.c $(DEPDIR)/%.d
 	$(CC) -c $(CFLAGS) $(DEPFLAGS) $< -o $@
 
 $(DEPS):
@@ -48,3 +45,5 @@ $(DEPS):
 clean:
 	$(RM) $(OBJDIR) $(DEPDIR)
 	$(RM) $(PROGNAME).elf $(PROGNAME).bin $(PROGNAME).map
+
+

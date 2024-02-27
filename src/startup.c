@@ -19,11 +19,12 @@
     |.data (SRAM e FLASH) e .bss (SRAM).                            |
     +---------------------------------------------------------------+
 */
-extern uint32_t _start_data;            /* Inicio da secao .data */
-extern uint32_t _end_data;              /* Fim da secao .data */
-extern uint32_t _start_bss;             /* Inicio da secao .bss */
-extern uint32_t _end_bss;               /* Fim da secao .bss */
-extern uint32_t _address_data;          /* Endereco de carga na FLASH da secao .data */
+extern uint32_t _sdata;            /* Inicio da seção .data */
+extern uint32_t _edata;             /* Fim da secão .data */
+extern uint32_t _la_data;          /* Endereço de carga da FLASH da seção .data */
+
+extern uint32_t _sbss;             /* Início da secão .bss */
+extern uint32_t _ebss;             /* Fim da seção .bss */
 
 int main(void);
 
@@ -221,16 +222,16 @@ void reset_handler(void) {
     uint32_t i;
 
     /* Copia a seção .data da FLASH para a SRAM */
-    uint32_t size    = (uint32_t) &_end_data - (uint32_t) &_start_data;
-    uint8_t *destiny = (uint8_t*) &_start_data;
-    uint8_t *source  = (uint8_t*) &_address_data;
+    uint32_t size    = (uint32_t) &_edata - (uint32_t) &_sdata;
+    uint8_t *destiny = (uint8_t*) &_sdata;
+    uint8_t *source  = (uint8_t*) &_la_data;
 
     for(i = 0; i < size; i++)
         *destiny++ = *source++;
 
     /* Inicializa a seção .bss com 0 */
-    size = (uint32_t) &_end_bss - (uint32_t) &_start_bss;
-    destiny = (uint8_t*) &_start_bss;
+    size = (uint32_t) &_ebss - (uint32_t) &_sbss;
+    destiny = (uint8_t*) &_sbss;
     
     for(i = 0; i < size; i++)
         *destiny++ = 0;
