@@ -25,12 +25,15 @@ $(shell mkdir -p $(dir $(DEPS)) > /dev/null)
 # Avisa ao make que esse target (all) não gera arquivos
 .PHONY: all
 all: $(OBJS) $(PROGNAME).elf $(PROGNAME).bin
-git s
+
 $(PROGNAME).elf: $(OBJS)
 	$(LD) $(LFLAGS) -o $@ $^
 
 $(PROGNAME).bin: $(PROGNAME).elf
 	$(CP) -O binary $^ $@
+
+$(PROGNAME).elf: $(OBJS)
+	$(LD) $(LFLAGS) -o $@ $^
 
 $(OBJDIR)/%.o: %.c $(DEPDIR)/%.d
 	$(CC) -c $(CFLAGS) $(DEPFLAGS) $< -o $@

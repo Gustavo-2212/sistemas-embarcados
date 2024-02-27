@@ -10,6 +10,7 @@ SECTIONS
 {
     .text :
     {
+        KEEP(*(.isr_vector))
         *(.text)        /* carrega a seção .text (instruções do código) na flash */
         . = ALIGN(4);   /* alinhamento da seção na memória, se necessário */
         *(.rodata)      /* carrega a seção .rodata (constantes) na flash */
@@ -30,6 +31,7 @@ SECTIONS
         . = ALIGN(4);
         _sbss = .;
         *(.bss)
+        . = ALIGN(4);
         _ebss = .;
     }> SRAM
 }
